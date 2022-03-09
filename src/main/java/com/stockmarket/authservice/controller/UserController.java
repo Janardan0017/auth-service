@@ -24,20 +24,18 @@ import java.util.Objects;
 @RequestMapping("/auth-service/api/v1.0/market/users")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
+    private final AuthenticationManager authenticationManager;
+    private final JwtTokenUtil jwtTokenUtil;
+    private final UserDetailsService userDetailsService;
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-    @Autowired
-    public void setUserService(UserService userService) {
+    public UserController(UserService userService, AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil,
+                          UserDetailsService userDetailsService) {
         this.userService = userService;
+        this.authenticationManager = authenticationManager;
+        this.jwtTokenUtil = jwtTokenUtil;
+        this.userDetailsService = userDetailsService;
     }
 
     @PostMapping()
@@ -72,11 +70,6 @@ public class UserController {
         }
         return ResponseEntity.ok(true);
     }
-
-//    @ExceptionHandler({AuthenticationException.class})
-//    public ResponseEntity<String> handleAuthenticationException(AuthenticationException e) {
-//        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
-//    }
 
     private void authenticate(String username, String password) {
         Objects.requireNonNull(username);

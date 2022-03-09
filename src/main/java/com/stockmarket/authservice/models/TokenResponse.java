@@ -1,7 +1,5 @@
 package com.stockmarket.authservice.models;
 
-import java.io.Serializable;
-
 public class TokenResponse {
 
     private final String token;
