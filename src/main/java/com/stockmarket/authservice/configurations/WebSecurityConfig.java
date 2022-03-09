@@ -13,18 +13,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
-
-//    @Autowired
-//    private AuthorizationTokenFilter jwtAuthenticationTokenFilter;
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -58,19 +53,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
-//        httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
     }
-
-//    @Override
-//    public void configure(WebSecurity webSecurity) throws Exception {
-//        webSecurity.ignoring()
-//                .antMatchers("/**");
-//                .antMatchers(HttpMethod.OPTIONS, "/**");
-//                .and()
-//                .ignoring()
-//                .antMatchers(HttpMethod.GET,
-//                        "/**" //Other Stuff You want to Ignore
-//                );
-//    }
 }

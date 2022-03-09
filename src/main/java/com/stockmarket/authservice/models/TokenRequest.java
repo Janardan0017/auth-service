@@ -1,7 +1,6 @@
 package com.stockmarket.authservice.models;
 
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 public class TokenRequest {
 

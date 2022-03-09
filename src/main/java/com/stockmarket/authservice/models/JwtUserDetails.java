@@ -11,8 +11,6 @@ import java.util.List;
 
 public class JwtUserDetails implements UserDetails {
 
-    private static final long serialVersionUID = 5155720064139820502L;
-
     private final Long id;
     private final String username;
     private final String password;
