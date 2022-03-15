@@ -1,0 +1,8 @@
+version: '3.7'
+
+services:
+  auth-service:
+    image: janardan22/auth-service:0.0.1-SNAPSHOT
+    mem_reservation: 700m
+    ports:
+      - "8083:8083"
